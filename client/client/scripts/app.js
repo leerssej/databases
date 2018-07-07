@@ -30,9 +30,9 @@ var app = {
     app.fetch(false);
 
     // Poll for new messages
-    setInterval(function() {
-      app.fetch(true);
-    }, 3000);
+    // setInterval(function() {
+    //   app.fetch(true);
+    // }, 3000);
   },
 
   send: function(message) {
@@ -72,8 +72,12 @@ var app = {
         // Get the last message
         var mostRecentMessage = data.results[data.results.length - 1];
 
+        // CODE FIX FOR LOCAL SERVER
+        if (mostRecentMessage === undefined) {
+          app.renderRoomList(data.results);
+          app.renderMessages(data.results, animate);
         // Only bother updating the DOM if we have a new message
-        if (mostRecentMessage.objectId !== app.lastMessageId) {
+        } else if (mostRecentMessage.objectId !== app.lastMessageId) {
           // Update the UI with the fetched rooms
           app.renderRoomList(data.results);
 

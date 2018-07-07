@@ -6,7 +6,7 @@ module.exports = {
       res.send(models.messages.get());
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      res.send('Hello world');
+      res.send(models.messages.post(req.body.username, req.body.message, req.body.roomname));
     } // a function which handles posting a message to the database
   },
 

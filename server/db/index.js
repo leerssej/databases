@@ -28,12 +28,30 @@ module.exports = {
     });
   },
 
+  
   getUsers: function (table) {
     con.query(`SELECT * FROM ${table}`, function (err, result, fields) {
       if (err) {
         throw err;
       }
       console.log(result);
+    });
+  },
+  
+  addMessage: function (username, message, roomname) {
+    let queryUserId = `SELECT id FROM users WHERE username =${username}`;
+    con.query(queryUserId, function (err, result) {
+      if (err) {
+        throw err;
+      } else {
+        var sql = `INSERT INTO messages (user_id, message, roomname) VALUES ('${result}', '${message}', '${roomname}')`;
+        con.query(sql, function (err, result) {
+          if (err) {
+            throw err;
+          }
+          console.log('1 message record inserted');
+        });
+      }
     });
   },
 

@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `messages`;
 		
 CREATE TABLE `messages` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `username` INTEGER NULL DEFAULT NULL,
+  `user_id` INTEGER NULL DEFAULT NULL,
   `message` MEDIUMTEXT NULL DEFAULT NULL,
   `roomname` MEDIUMTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -36,7 +36,7 @@ CREATE TABLE `messages` (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `messages` ADD FOREIGN KEY (username) REFERENCES `users` (`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 
 
 -- ---
